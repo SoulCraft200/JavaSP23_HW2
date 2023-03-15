@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 
 import java.time.DayOfWeek;
+
 public class SaleDate {
     private int year;
     private int month;
@@ -8,7 +9,7 @@ public class SaleDate {
 
     private LocalDate date = LocalDate.of(year, month, day);
 
-    public SaleDate(int year, int month, int day){
+    public SaleDate(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -38,11 +39,11 @@ public class SaleDate {
         this.day = day;
     }
 
-    public DayOfWeek dayOfWeek(){
+    public DayOfWeek dayOfWeek() {
         return date.getDayOfWeek();
     }
 
-    public static String getMonthName(int num){
+    public static String getMonthName(int num) {
         String name = switch (num) {
             case 1 -> "January";
             case 2 -> "February";
@@ -61,7 +62,7 @@ public class SaleDate {
         return name;
     }
 
-    public String toString(){
-        return day+"/"+month+"/"+year;
+    public String toString() {
+        return String.format("%02d/%02d/%04d", day, month, year);
     }
 }
