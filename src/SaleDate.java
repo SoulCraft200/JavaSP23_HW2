@@ -7,12 +7,13 @@ public class SaleDate {
     private int month;
     private int day;
 
-    private LocalDate date = LocalDate.of(year, month, day);
+    private LocalDate date;
 
     public SaleDate(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
+        date = LocalDate.of(year, month, day);
     }
 
     public int getYear() {
@@ -61,7 +62,7 @@ public class SaleDate {
         };
         return name;
     }
-
+    @Override
     public String toString() {
         return String.format("%02d/%02d/%04d", day, month, year);
     }

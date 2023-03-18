@@ -1,6 +1,6 @@
 sold_date,     product/item name , sold_price
 2022-02-13,       Microwave ,        50.9
-2022-05-05,        ,Fryer ,          63.7
+2022-05-05         ,Fryer ,          63.7
 2022-08-18         ,SODA ,0.25
 2022-12-09         ,MILK , 1.5
 2022-11-01         ,CHIPS ,          0.5
