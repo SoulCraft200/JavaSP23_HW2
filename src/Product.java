@@ -9,8 +9,8 @@ public class Product {
         this.price = price;
     }
 
-    public String getDate(){
-        return date.toString();
+    public SaleDate getDate(){
+        return date;
     }
 
     public String getName(){
