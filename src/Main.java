@@ -33,7 +33,7 @@ public class Main {
             int min = 0;
             for(int k = 0; k < tempProductList.size() ; k++){
                 if(tempProductList.get(k).getDate().getMonth() == tempProductList.get(min).getDate().getMonth()){
-                    while(tempProductList.get(k).getDate().getDay() < tempProductList.get(min).getDate().getDay()){
+                    while(tempProductList.get(k).getDate().getDay() <= tempProductList.get(min).getDate().getDay()){
                         min = k;
                     }
                 }else if(tempProductList.get(k).getDate().getMonth() < tempProductList.get(min).getDate().getMonth()){
