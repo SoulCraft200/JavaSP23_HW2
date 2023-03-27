@@ -48,38 +48,53 @@ public class Main {
         Print.header();
         int mon = 1;
         int count = 0;
-        int icount = 0;
+        int tempCount = 0;
         ArrayList<String> items = new ArrayList<>();
         while (count < productList.size()) {
-            if ((count == 0) || (productList.get(count).getDate().getMonth() > productList.get(count - 1).getDate().getMonth())) {
-                while ((count == 0) || (productList.get(count).getDate().getMonth() > productList.get(count - 1).getDate().getMonth())) {
-                    Print.line();
-                    System.out.printf("| %-107s |", SaleDate.getMonthName(mon));
-                    System.out.println("");
-                    Print.line();
-                    items.add(productList.get(count).getName());
-                    count++;
-                    icount++;
+            while ((count == 0) || (productList.get(count).getDate().getMonth() > productList.get(count - 1).getDate().getMonth())) {
+                Print.line();
+                System.out.printf("| %-107s |", SaleDate.getMonthName(mon));
+                System.out.println("");
+                Print.line();
+                while ((tempCount == 0) || (productList.get(tempCount).getDate().getMonth() > productList.get(tempCount + 1).getDate().getMonth())) {
+                    items.add(productList.get(tempCount).getName());
+                    tempCount++;
                 }
                 System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count).getDate(), productList.get(count).getDate().dayOfWeek(), count, profit);
-//                for(int i = 0; i<items.size();i++){
-//                    if (i == 0) {
-//                        System.out.printf(items.get(i));
-//                    }else{
-//                        System.out.printf(",%s",items.get(i));
-//                    }
-//                    if((i+1)%5==0){
-//                        System.out.println("");
-//                    }
-//                }
-            }else if (productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
-                while (productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
-                    items.add(productList.get(count).getName());
+                for(int i = 0; i<items.size();i++){
+                    if (i == 0) {
+                        System.out.printf(items.get(i));
+                    }else{
+                        System.out.printf(",%s",items.get(i));
+                    }
+                    if((i+1)%5==0){
+                        System.out.println("");
+                    }
+                    System.out.println("");
                     count++;
-                    icount++;
+                    tempCount = 0;
+                }
+            }
+            while (productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
+                while (productList.get(tempCount).getDate().getMonth() == productList.get(tempCount + 1).getDate().getMonth()) {
+                    items.add(productList.get(tempCount).getName());
+                    tempCount++;
+
                 }
             System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count).getDate(), productList.get(count).getDate().dayOfWeek(), count, profit);
-            System.out.println("");
+                System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count).getDate(), productList.get(count).getDate().dayOfWeek(), count, profit);
+                for(int i = 0; i<items.size();i++){
+                    if (i == 0) {
+                        System.out.printf(items.get(i));
+                    }else{
+                        System.out.printf(",%s",items.get(i));
+                    }
+                    if((i+1)%5==0){
+                        System.out.println("");
+                    }
+                    System.out.println("");
+                    count++;
+                }
             }
 
             if ((count < productList.size() - 1) && (productList.get(count).getDate().getMonth() - productList.get(count + 1).getDate().getMonth() == 1)) {
@@ -88,7 +103,6 @@ public class Main {
                 mon = productList.get(count + 1).getDate().getMonth();
             }
             items.clear();
-            icount = 0;
         }
         Print.line();
 
