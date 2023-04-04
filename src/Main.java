@@ -45,58 +45,65 @@ public class Main {
         }
 
         Print.header();
-        int mon = 0;
+
         int count = 0;
-        ArrayList<String> items = new ArrayList<String>();
+        double profit = 0;
+        int mon = 0;
+        ArrayList<String> items = new ArrayList<>();
         while (count < productList.size()) {
-            float profit = 0;
-            int item = 0;
-            if (productList.get(count).getDate().getMonth() > mon) {
-                Print.Month(productList.get(count).getDate().getMonth());
-                mon = productList.get(count).getDate().getMonth();
-            }
             if (count == 0) {
+                Print.Month(productList.get(count).getDate().getMonth());
                 items.add(productList.get(count).getName());
                 profit += productList.get(count).getPrice();
-                item++;
                 count++;
             }
-            while (productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
+            while ((count < productList.size()) && (productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth())) {
                 if (productList.get(count).getDate().getDay() == productList.get(count - 1).getDate().getDay()) {
                     items.add(productList.get(count).getName());
                     profit += productList.get(count).getPrice();
-                    item++;
                     count++;
-                } else{
-                   break;
-                }
+                }else {break;}
 
             }
-            System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count).getDate(), productList.get(count).getDate().dayOfWeek(), count, profit);
+            System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count - 1).getDate(), productList.get(count - 1).getDate().dayOfWeek(), items.size(), profit);
             int i;
             for (i = 0; i < items.size(); i++) {
                 if (i == 0) {
                     System.out.printf("%-20s", items.get(i));
                 } else {
-                    System.out.printf(",%-20s", items.get(i));
+                    System.out.printf(",%-19s", items.get(i));
                 }
                 if ((i + 1) % 3 == 0) {
                     System.out.println("|");
+                    if (items.size() > 3){
+                        System.out.print("|"+" ".repeat(58)+"|");
+                    }
                 }
             }
-            if (i < 3){
-                System.out.println(" ".repeat( (3 - i) * 20) + "|");
-            }else if (i % 3 != 0){
-                System.out.println(" ".repeat( (i%3) * 20) + "|");
+            if (i < 3) {
+                System.out.println(" ".repeat(((3 - i) * 20 )) + "|");
+            } else if (i % 3 != 0) {
+                System.out.println(" ".repeat(((i % 3) * 20) + i%3) + "|");
             }
-
+            profit = 0;
             items.clear();
-
+            if  ((count < productList.size()) && productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
+                if (productList.get(count).getDate().getDay() > productList.get(count - 1).getDate().getDay()) {
+                    items.add(productList.get(count).getName());
+                    profit += productList.get(count).getPrice();
+                    count++;
+                }
+            } else if ((count < productList.size()) && productList.get(count).getDate().getMonth() > productList.get(count - 1).getDate().getMonth()) {
+                Print.Month(productList.get(count).getDate().getMonth());
+                items.add(productList.get(count).getName());
+                profit += productList.get(count).getPrice();
+                count++;
+            }
 
 
         }
+        Print.line();
+
     }
-
-
 }
 

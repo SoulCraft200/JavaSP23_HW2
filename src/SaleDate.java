@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 import java.time.DayOfWeek;
 
-public class SaleDate {
+public class SaleDate extends Object{
     private int year;
     private int month;
     private int day;
