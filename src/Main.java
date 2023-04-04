@@ -101,7 +101,7 @@ public class Main {
             }
 
 
-        }i
+        }
         Print.line();
 
     }
