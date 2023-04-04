@@ -7,8 +7,8 @@ public class Main {
 
         File file = new File("in.txt");
         Scanner input = new Scanner(file);
-        String tile = input.nextLine();
-        ArrayList<Product> tempProductList = new ArrayList<Product>();
+        input.nextLine();
+        ArrayList<Product> tempProductList = new ArrayList<>();
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner inLine = new Scanner(line);
@@ -25,7 +25,7 @@ public class Main {
             Product product = new Product(soldDate, pName, Double.parseDouble(soldPrice));
             tempProductList.add(product);
         }
-        ArrayList<Product> productList = new ArrayList<Product>();
+        ArrayList<Product> productList = new ArrayList<>();
         while (tempProductList.size() != 0) {
             int min = 0;
             for (int k = 0; k < tempProductList.size(); k++) {
@@ -40,15 +40,9 @@ public class Main {
             productList.add(tempProductList.get(min));
             tempProductList.remove(min);
         }
-        for (Product element : productList) {
-            System.out.println(element);
-        }
-
         Print.header();
-
         int count = 0;
         double profit = 0;
-        int mon = 0;
         ArrayList<String> items = new ArrayList<>();
         while (count < productList.size()) {
             if (count == 0) {
@@ -65,26 +59,7 @@ public class Main {
                 }else {break;}
 
             }
-            System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count - 1).getDate(), productList.get(count - 1).getDate().dayOfWeek(), items.size(), profit);
-            int i;
-            for (i = 0; i < items.size(); i++) {
-                if (i == 0) {
-                    System.out.printf("%-20s", items.get(i));
-                } else {
-                    System.out.printf(",%-19s", items.get(i));
-                }
-                if ((i + 1) % 3 == 0) {
-                    System.out.println("|");
-                    if (items.size() > 3){
-                        System.out.print("|"+" ".repeat(58)+"|");
-                    }
-                }
-            }
-            if (i < 3) {
-                System.out.println(" ".repeat(((3 - i) * 20 )) + "|");
-            } else if (i % 3 != 0) {
-                System.out.println(" ".repeat(((i % 3) * 20) + i%3) + "|");
-            }
+            Print.itemLine(productList,count,items,profit);
             profit = 0;
             items.clear();
             if  ((count < productList.size()) && productList.get(count).getDate().getMonth() == productList.get(count - 1).getDate().getMonth()) {
@@ -99,8 +74,6 @@ public class Main {
                 profit += productList.get(count).getPrice();
                 count++;
             }
-
-
         }
         Print.line();
 
