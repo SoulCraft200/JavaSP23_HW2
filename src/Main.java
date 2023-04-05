@@ -12,7 +12,7 @@ public class Main {
         input.nextLine();
         //List that stores the unordered products
         ArrayList<Product> tempProductList = new ArrayList<>();
-        //Creating products objects and adding it to the list.
+        //Separating the line and creating products objects and adding it to the list.
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner inLine = new Scanner(line);
