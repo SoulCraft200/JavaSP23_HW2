@@ -4,11 +4,15 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-
+        //Creating file object.
         File file = new File("in.txt");
+        //Scanning file.
         Scanner input = new Scanner(file);
+        //Ignoring the first line (Header)
         input.nextLine();
+        //List that stores the unordered products
         ArrayList<Product> tempProductList = new ArrayList<>();
+        //Creating products objects and adding it to the list.
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner inLine = new Scanner(line);
@@ -25,7 +29,9 @@ public class Main {
             Product product = new Product(soldDate, pName, Double.parseDouble(soldPrice));
             tempProductList.add(product);
         }
+        //List that stores the ordered products
         ArrayList<Product> productList = new ArrayList<>();
+        //Ordering the products and adding it to the product list
         while (tempProductList.size() != 0) {
             int min = 0;
             for (int k = 0; k < tempProductList.size(); k++) {
@@ -40,10 +46,13 @@ public class Main {
             productList.add(tempProductList.get(min));
             tempProductList.remove(min);
         }
+        //Printing header
         Print.header();
+        //Initializing the temp variables
         int count = 0;
         double profit = 0;
         ArrayList<String> items = new ArrayList<>();
+        //Joining the products of the same day , discounting on saturdays ,and printing the table lines.
         while (count < productList.size()) {
             if (count == 0) {
                 Print.Month(productList.get(count).getDate().getMonth());
@@ -75,6 +84,7 @@ public class Main {
                 count++;
             }
         }
+        //The bottom line of the table
         Print.line();
 
     }

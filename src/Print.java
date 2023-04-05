@@ -1,6 +1,14 @@
 import java.util.ArrayList;
+
+/**
+ * Print formats.
+ */
 public class Print {
     private static final String tline = "+" + "-".repeat(15) + "+" + "-".repeat(15) + "+" + "-".repeat(15) + "+" + "-".repeat(10) + "+" + "-".repeat(60) + "+";
+
+    /**
+     * Prints the Header.
+     */
     public static void header(){
         String[] headers = {"Sold Date", "Day" ,"Sold" , "Profit" , "Products"};
         System.out.println(tline);
@@ -8,10 +16,18 @@ public class Print {
         System.out.println();
     }
 
+    /**
+     * Prints Line.
+     */
     public static void line(){
         System.out.println(tline);
     }
 
+    /**
+     * Prints the Month bar.
+     *
+     * @param mon the mon
+     */
     public static void Month(int mon){
         Print.line();
         System.out.printf("| %-117s |", SaleDate.getMonthName(mon));
@@ -19,6 +35,14 @@ public class Print {
         Print.line();
     }
 
+    /**
+     * Item line.
+     *
+     * @param productList the product list
+     * @param count       the count
+     * @param items       the items
+     * @param profit      the profit
+     */
     public static void itemLine(ArrayList<Product> productList,int count,ArrayList<String> items,double profit){
         if(productList.get(count - 1).getDate().dayOfWeek().toString().equals("SATURDAY")){ profit = profit - profit*(15/100.0);}
         System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count - 1).getDate(), productList.get(count - 1).getDate().dayOfWeek(), items.size(), profit);
