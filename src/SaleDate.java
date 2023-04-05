@@ -5,12 +5,12 @@ import java.time.DayOfWeek;
 /**
  * The type Sale date.
  */
-public class SaleDate extends Object{
+public class SaleDate {
     private int year;
     private int month;
     private int day;
 
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * Instantiates a new Sale date.
