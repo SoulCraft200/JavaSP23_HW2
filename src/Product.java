@@ -8,6 +8,11 @@ public class Product {
 
     /**
      * Instantiates a new Product.
+     */
+    public Product(){}
+
+    /**
+     * Instantiates a new Product.
      *
      * @param date  the date
      * @param name  the name
@@ -46,12 +51,31 @@ public class Product {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "date=" + date +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
+    public void setDate(SaleDate date) {
+        this.date = date;
     }
+
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets price.
+     *
+     * @param price the price
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 }

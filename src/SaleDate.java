@@ -14,6 +14,13 @@ public class SaleDate {
 
     /**
      * Instantiates a new Sale date.
+     */
+    public SaleDate(){
+        date = LocalDate.of(1,1,1);
+    }
+
+    /**
+     * Instantiates a new Sale date.
      *
      * @param year  the year
      * @param month the month
