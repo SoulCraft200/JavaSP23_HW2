@@ -1,69 +1,50 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
-
-/**
- * Print formats.
- */
 public class Print {
     private static final String tline = "+" + "-".repeat(15) + "+" + "-".repeat(15) + "+" + "-".repeat(15) + "+" + "-".repeat(10) + "+" + "-".repeat(60) + "+";
-
-    /**
-     * Prints the Header.
-     */
-    public static void header(){
+    public static String header(){
+        String result = "";
         String[] headers = {"Sold Date", "Day" ,"Sold" , "Profit" , "Products"};
-        System.out.println(tline);
-        System.out.printf("|%-15s|%-15s|%-15s|%-10s|%-60s|" , headers[0],headers[1],headers[2],headers[3],headers[4]);
-        System.out.println();
+        result += tline + "\n";
+        result += String.format("|%-15s|%-15s|%-15s|%-10s|%-60s|" , headers[0],headers[1],headers[2],headers[3],headers[4]);
+        return result;
     }
 
-    /**
-     * Prints Line.
-     */
-    public static void line(){
-        System.out.println(tline);
+    public static String line() {
+        return tline;
     }
 
-    /**
-     * Prints the Month bar.
-     *
-     * @param mon the mon
-     */
-    public static void Month(int mon){
-        Print.line();
-        System.out.printf("| %-117s |", SaleDate.getMonthName(mon));
-        System.out.println();
-        Print.line();
+    public static String Month(int mon){
+        String result = "";
+        result += tline + "\n";
+        result += String.format("| %-117s |", SaleDate.getMonthName(mon)) + "\n";
+        result += tline;
+        return result;
     }
 
-    /**
-     * Item line.
-     *
-     * @param productList the product list
-     * @param count       the count
-     * @param items       the items
-     * @param profit      the profit
-     */
-    public static void itemLine(ArrayList<Product> productList,int count,ArrayList<String> items,double profit){
+    public static String itemLine(ArrayList<Product> productList,int count,ArrayList<String> items,double profit){
+        String result = "";
         if(productList.get(count - 1).getDate().dayOfWeek().toString().equals("SATURDAY")){ profit = profit - profit*(15/100.0);}
-        System.out.printf("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count - 1).getDate(), productList.get(count - 1).getDate().dayOfWeek(), items.size(), profit);
+        result += String.format("|%-15s|%-15s|%-15s|%-10.2f|", productList.get(count - 1).getDate(), productList.get(count - 1).getDate().dayOfWeek(), items.size(), profit);
         int i;
         for (i = 0; i < items.size(); i++) {
             if (i == 0) {
-                System.out.printf("%-20s", items.get(i));
+                result += String.format("%-20s", items.get(i));
             } else {
-                System.out.printf(",%-19s", items.get(i));
+                result += String.format(",%-19s", items.get(i));
             }
             if ((i + 1) % 3 == 0) {
-                System.out.println("|");
+                result += "|";
                 if (items.size() > 3){
-                    System.out.print("|"+" ".repeat(58)+"|");
+                    result += "\n|"+" ".repeat(58)+"|";
                 }
             }
         }
         if (i < 3) {
-            System.out.println(" ".repeat(((3 - i) * 20 )) + "|");
+            result += String.format(" ".repeat(((3 - i) * 20 )) + "|");
         } else if (i % 3 != 0) {
-            System.out.println(" ".repeat((3 -(i % 3)) * 20) + "|");
+            result += String.format(" ".repeat((3 -(i % 3)) * 20) + "|");
         }
+        return result;
     }
 }
